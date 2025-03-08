@@ -1,0 +1,130 @@
+{% extends "xtra_careers/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"> <!-- Link to your CSS file -->
+</head>
+<body>
+    {% block content %}
+        <div class="welcome-message">
+            <h1 id="type-writer"></h1>
+            <p>"Your Journey to a better career Starts here!.."</p>
+        </div>
+
+        <!-- video start -->
+
+        <div class="video-container">
+            <video autoplay muted loop id="background-video">
+                <source src="{% static '/home/Planning to Switch.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- video end -->
+
+        <!-- Social Media Icons -->
+        <div class="social-media">
+            <a href="mailto:director@fluxwings.com" target="_blank"><i class="fa fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f fw-normal"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in fw-normal"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram fw-normal"></i></a>
+        </div>
+        <!-- Social Media End -->
+
+        <!-- Services Start -->
+        <div class="service" id="services-section">
+            <div class="services-section">
+                <h2 class="services-title"><b>"Elevate Your Career Journey"</b></h2>
+                <div class="services-container">
+                    {% for services in SERVICE %}
+                        <div class="service-box">
+                            <i class="{{ services.service_icon }} service-icon"></i>
+                            <h3>{{ services.service_name }}</h3>
+                            <a href="{% url 'details_services' services.id %}">
+                                <button class="explore-button"><b>Explore</b></button>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="discount">
+            <img src="{% static 'discountoffer/discountoffer2.png' %}" class="discountoffer">
+        </div>
+
+        <!-- Services End -->
+
+        <!-- About Us Start -->
+
+        <div id="about-us">
+            <div class="aboutus">
+                <div class="aboutus-section">
+                    <div class="aboutus-desc">
+                        <h2>Convert your Job Hunt into a Battle Plan.</h2>
+                        <p>
+                            Landing your dream job requires more than a single approach; it demands a strategic,
+                            proactive plan. <b>Boost your job search</b> with the right tools and resources to secure
+                            the perfect role. <b>Explore our professional career services</b> to gain:
+                        </p>
+                        <h4><i class="fa fa-check text-primary me-3"></i>&nbsp <b>Increased Job Visibility</b></h4>
+                        <h4><i class="fa fa-check text-primary me-3"></i>&nbsp <b>Personalised Career Assistance</b></h4>
+                        <h4><i class="fa fa-check text-primary me-3"></i>&nbsp <b>Professional Growth Opportunities</b></h4>
+                    </div>
+                    <div class="aboutus-image">
+                        <div class="row g-0 about-bg rounded overflow-hidden">
+                            <div class="col-6 text-start">
+                                <img class="img-fluid" src="{% static 'about/about-12.jpg' %}" style="height: 300px; width: 100%;" >
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid" src="{% static 'about/about-17.jpeg' %}"style="width: 90%; margin-top: 15%; height:273px">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid" src="{% static 'about/about-14.jpg' %}" style="width: 85%; height:263px; margin-top: -20px;">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid w-100" src="{% static 'about/about-16.png' %}" style="height: 300px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us End -->
+
+        <!-- FAQ's Start -->
+        <div id="faq">
+            <br><br><div class="faq" id="faq">
+                <div class="faq-section">
+                    <h2><b>FAQ's</b></h2>
+                    <div class="faq-container">
+                        {% for faqs in FAQS %}
+                        <div class="faq-item">
+                            <button class="faq-question">{{ faqs.question }}<span>&#x25BC;</span></button>
+                            <div class="faq-answer">
+                                <p>{{ faqs.answer }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div><br><br>
+
+        <!-- FAQ's End -->
+
+        <!-- Up Arrow Button -->
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+            <i class="fa-brands fa-space-awesome"></i>   
+        </button>
+
+    {% endblock %}
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+{% extends "xtra_careers/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"> <!-- Link to your CSS file -->
+</head>
+<body>
+    {% block content %}
+
+        <div class="payment-title">
+            <span class="main-title">"Secure Checkout for Professional Growth"</span>
+        </div>
+        
+        <div class="page-background">
+            <div class="container-payment">
+                <div class="form-container">
+                    <form id="paymentForm" method="post" action="{% url 'payment_portal' %}">
+                        {% csrf_token %}
+
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label for="id_name">Enter Your Full Name:</label>
+                            <input type="text" id="id_name" name="name" placeholder="Enter Your Full Name" required>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <label for="id_email">Enter Your Email:</label>
+                            <input type="email" id="id_email" name="email" placeholder="Enter Your Email ID" required>
+                        </div>
+
+                        <!-- Contact Field -->
+                        <div class="form-group">
+                            <label for="id_contact">Phone Number:</label>
+                            <input type="text" id="id_contact" name="contact" placeholder="Enter your 10-Digit Mobile Number" required>
+                        </div>
+
+                        <!-- Experience Level -->
+                        <div class="form-group">
+                            <label>Select Your Experience:</label>
+                            <div class="checkbox-radio-group">
+                                {% for value, label in form.fields.experience_level.choices %}
+                                    <label>
+                                        <input type="radio" id="experience_{{ value }}" name="experience_level" value="{{ value }}" required>
+                                        {{ label }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="image-form">
+                            <img src="{% static 'discountoffer/discountoffer2.png' %}">
+                        </div>
+            
+                        <!-- Services -->
+                        <div class="form-group">
+                            <label>Select Services:</label>
+                            <div class="checkbox-radio-groups">
+                                {% for value, label in form.fields.selected_services.choices %}
+                                    <label>
+                                        <input type="checkbox" id="service_{{ value }}" name="selected_services" value="{{ value }}">
+                                        {{ label }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>    
+
+                        <!-- Total Amount -->
+                        <div class="container-amounts">
+                            <p id="totalAmount"><strong>Actual Amount: ₹0</strong></p>
+                            <p id="discountAmount"><strong>Discount Amount: ₹0</strong></p> 
+                            <p id="gstAmount"><strong>GST (18%): ₹ 0</strong></p>
+                            <p id="finalAmount"><strong>Final Amount to Pay: ₹0</strong></p>
+                        </div>
+
+                        {% comment %} <input type="hidden" id="amount" name="amount" value="0"> {% endcomment %}
+
+                        <input type="number" id="amount" name="amount" value="5000" hidden> <!--Amount in paise -->
+
+                        <!-- Terms and Conditions -->
+                        <div class="terms">
+                            <b>Terms & Conditions</b>
+                            <textarea readonly>
+1. Payment Terms: 
+* Payment Methods: We accept payments via [list accepted payment methods, e.g., credit card, PayPal, etc.].
+* Payment Schedule: Full payment is required upfront before we commence work on your resume or cover letter.
+* Refund Policy: Due to the personalized nature of our services, we do not offer refunds. However, we provide revisions to ensure your satisfaction.
+                                                            
+2. Service Delivery:
+* Turnaround Time: Our standard turnaround time is [specify time frame, e.g., 3-5 business days]. Expedited services are available for an additional fee.
+* Revisions: We offer up to [number] revisions within [time frame, e.g., 14 days] of delivery to ensure your documents meet your expectations.
+                                                            
+3. Confidentiality: We are committed to protecting your privacy. All personal information and documents shared with us will be kept confidential and used solely for the purpose of providing the requested services.
+
+4. Client Responsibility:
+* Accurate Information: You are responsible for providing accurate and complete information about your work history, education, and job aspirations.
+* Timely Communication: Please respond promptly to our requests for additional information or clarifications to avoid delays in service delivery.
+                                                            
+5. Limitations of Services:
+* No Guarantee of Employment: While we strive to enhance your job search success, we do not guarantee job placement or employment as a result of our services.
+* Customization: Our documents are tailored to your specific information and job goals; however, final customization may be required to suit specific job applications.
+                                                            
+Amendments:
+We reserve the right to update or modify these terms and conditions at any time. Any changes will be posted on our website, and your continued use of our services constitutes acceptance of the updated terms.
+                                                            
+Contact Us:
+If you have any questions or need further clarification regarding our terms and conditions, please contact us at [contact information].
+
+By using our services, you acknowledge that you have read, understood, and agree to these terms and conditions.
+                            </textarea>
+                            <label>
+                                <input type="checkbox" id="agreeTerms"> I agree to the terms and conditions
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <br><button type="submit" id="payNowButton" disabled>Pay Now</button>
+                    </form>
+                </div>
+
+                <div class="image-payment">
+                    <img src="{% static 'payment/payment1.png' %}" alt="Payment Illustration"><br><br><br><br><br><br>
+                    <img src="{% static 'payment/payment2.png' %}" alt="Payment Illustration1">
+                </div>
+
+            </div>
+        </div>
+
+    {% endblock %}
+
+    <script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>

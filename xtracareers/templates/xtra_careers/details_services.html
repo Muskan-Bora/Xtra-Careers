@@ -1,0 +1,151 @@
+{% extends "xtra_careers/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="service-detail">
+        <h1>
+            <span id="typewriter-text"></span>
+        </h1>
+    </div>
+    
+    <div class="background-color">
+        <br>
+        <div class="image-tagline">
+            <img src="{{ detailservices.service_tagline.url }}" class="responsive-image">
+        </div>
+
+        <div class="service-part">
+            <div class="image-container1">
+                <img src="{{ detailservices.service_img1.url }}" alt="Service Image1" class="animated-image1">
+            </div>
+            <div class="text-container1">
+                <p class="animated-text">{{ detailservices.service_importance|linebreaks }}</p>
+                <p class="animated-text"><b>{{ detailservices.service_mission|linebreaks }}</b></p>
+            </div>
+        </div>
+
+        <div class="image-valueproposition">
+            <img src="{{ detailservices.service_valueproposition.url }}" class="responsive-image1">
+        </div>
+
+        <div class="image-mainheading">
+            <img src="{{ detailservices.service_mainheading.url }}" class="responsive-image2">
+        </div>
+
+        <div class="service-part1">
+            <div class="text-container2">
+                <p class="animated-text1"><b>{{ detailservices.service_introheading|linebreaks }}</b></p>
+                <p class="animated-text1">{{ detailservices.service_intro|linebreaks }}</p>
+                {% comment %} <p class="animated-text1">{{ detailservices.service_whatweoffer_heading|linebreaks }}</p>
+                <p class="animated-text1">{{ detailservices.service_whatweoffer_desc|linebreaks }}</p> {% endcomment %}
+            </div>
+
+            <div class="image-container2">
+                <img src="{{ detailservices.service_img2.url }}" alt="Service Image2" class="animated-image2">
+            </div>
+        </div>
+        
+        <div class="desc">
+            <div class="desc-container">
+                <p class="text1"><b>{{ detailservices.service_whatweoffer_heading|linebreaks }}</b></p>
+                <p class="text1">{{ detailservices.service_whatweoffer_desc|linebreaks }}</p>
+            </div>
+        </div>
+
+        <div class="service-part3">
+            <div class="image-container3">
+                <img src="{{ detailservices.service_img3.url }}" alt="Service Image3" class="animated-image3">
+            </div>
+            <div class="text-container3">
+                <p class="animated-text2"><b>{{ detailservices.service_whychoose_heading|linebreaks }}</b></p>
+                <p class="animated-text2">{{ detailservices.service_whychoose_desc|linebreaks }}</p>
+            </div>
+        </div>
+
+        <div class="desc1">
+            <div class="desc-container1">
+                <p class="text1"><b>{{ detailservices.service_getstartedtoday_heading|linebreaks }}</b></p>
+                <p class="text1">{{ detailservices.service_getstartedtoday_desc|linebreaks }}</p>
+            </div>
+        </div>
+
+        <br><div id="pricing-section" class="pricing-container">
+            <div class="columns fade-in" style="animation-delay: 0s;">
+                <ul class="price">
+                    <li class="header"><b>{{ detailservices.pricing_junior }}</b></li>
+                    <li class="grey">
+                        <h4>{{ detailservices.pricings_year }}</h4>
+                        <h4>Work Experience</h4>
+                    </li>
+                    <li>
+                        <h5><b>₹ {{ detailservices.pricing_juniorprice }}/-</b></h5>
+                        <h5 style="font-size: 18px">+ GST</h5>
+                    </li>
+                    <li style="background-color: #E1F7F5"><a href="/xtracareers/payment_portal/" class="btn btn-dark" style="width:200px;">✨ Get Started ✨</a></li>
+                </ul>
+            </div>
+            <div class="columns fade-in" style="animation-delay: 0.3s;">
+                <ul class="price">
+                    <li class="header"><b>{{ detailservices.pricing_mid }}</b></li>
+                    <li class="grey">
+                        <h4>{{ detailservices.pricing_no_year }}</h4>
+                        <h4>Work Experience</h4>
+                    </li>
+                    <li>
+                        <h5><b>₹ {{ detailservices.pricing_midprice }}/-</b></h5>
+                        <h5 style="font-size: 18px">+ GST</h5>
+                    </li>
+                    <li style="background-color: #E1F7F5"><a href="/xtracareers/payment_portal/" class="btn btn-dark" style="width:200px">✨ Get Started ✨</a></li>
+                </ul>
+            </div>
+            <div class="columns fade-in" style="animation-delay: 0.6s;">
+                <ul class="price">
+                    <li class="header"><b>{{ detailservices.pricing_senior }}</b></li>
+                    <li class="grey">
+                        <h4>{{ detailservices.pricing_year }}</h4>
+                        <h4>Work Experience</h4>
+                    </li>
+                    <li>
+                        <h5><b>₹ {{ detailservices.pricing_seniorprice }}/-</b></h5>
+                        <h5 style="font-size: 18px">+ GST</h5>
+                    </li>
+                    <li style="background-color: #E1F7F5"><a href="/xtracareers/payment_portal/" class="btn btn-dark" style="width:200px">✨ Get Started ✨</a></li>
+                </ul>
+            </div>
+            <div class="columns fade-in" style="animation-delay: 0.9s;">
+                <ul class="price">
+                    <li class="header"><b>{{ detailservices.pricing_top }}</b></li>
+                    <li class="grey">
+                        <h4>{{ detailservices.pricing_n_years }}</h4>
+                        <h4>Work Experience</h4>
+                    </li>
+                    <li>
+                        <h5><b>₹ {{ detailservices.pricing_topprice }}/-</b></h5>
+                        <h5 style="font-size: 18px">+ GST</h5>
+                    </li>
+                    <li style="background-color: #E1F7F5"><a href="/xtracareers/payment_portal/" class="btn btn-dark" style="width:200px">✨ Get Started ✨</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="image-quote">
+            <div class="discounts">
+                <img src="{% static 'discountoffer/discountoffer3.png' %}" class="discountoffers">
+            </div>
+            <img src="{{ detailservices.service_quote.url }}" class="responsive-image3">
+        </div>
+    </div>
+
+    <!-- Script for service name -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const texts = "{{ detailservices.service_name }}";
+            typeWriters(texts, "typewriter-text", 100); // Adjust speed as needed
+        });
+    </script>
+{% endblock %}
+
+
+    

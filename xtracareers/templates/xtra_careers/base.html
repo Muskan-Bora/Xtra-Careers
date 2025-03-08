@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xtra Careers</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body class="light-mode">
+
+    <!-- Navbar starts -->
+
+    <nav class="navbar custom-navbar">
+        <div class="container-fluid">
+            <a href="{% url 'index' %}" class="navbar-brand offset-md-1"> 
+                <img src="{% static 'logo/logo2.jpg' %}" class="navbar-logo">   
+                <strong class="navbar-text" style="color: rgb(11, 68, 61);"> "That Extra Edge For Your Career" </strong>
+            </a>
+            <div class="contact-info">
+                <p class="contact-text">
+                    {% comment %} <i class="fa fa-envelope" style="color: black;"></i>&nbsp <b>director@fluxwings.com |</b>&nbsp&nbsp&nbsp {% endcomment %}
+                    {% comment %} <i class="fa-solid fa-phone" style="color: black;"></i>&nbsp <b>9867046535 |</b> {% endcomment %}
+                </p>
+            </div>
+
+            <!-- Theme Toggle Button -->
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn" class="btn btn-light" onclick="toggleTheme()">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- navbar ends -->
+
+    <!-- Navigation Buttons starts -->
+
+    <div class="nav-buttons">
+        <a href="{% url 'index' %}" class="btn"><b>Home</b></a>
+        <div class="dropdown">
+            <a class="btn"><b>Services</b></a>
+            <div class="dropdown-content">
+                <a href="/xtracareers/details_services/1/"><b>ATS Optimized Resume & Cover Letter</b></a>
+                <a href="/xtracareers/details_services/3/"><b>Personal Branding (LinkedIn)</b></a>
+                <a href="/xtracareers/details_services/4/"><b>Mock Interview & Guidance</b></a>
+            </div>
+        </div>
+        <a href="{% url 'index' %}#about-us" class="btn"><b>About Us</b></a>
+        <a href="{% url 'index' %}#faq" class="btn"><b>FAQ's</b></a>
+        <a href="#footer" class="btn"><b>Contact</b></a>
+    </div>
+
+    <!-- Toggle Button for Mobile Devices -->
+    <button class="toggle-btn" onclick="toggleMenu()">☰</button>
+
+    <!-- Navigation Button Ends -->
+
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-25703775-9dbc-44c9-9ca5-1a25f134480c" data-elfsight-app-lazy></div>
+
+
+    {% if messages %}
+        
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!--  footer -->
+    <footer id="footer">
+        <div class="container p-5">
+            <div class="row g-5">
+                <div class="col-lg-5 col-md-5 d-flex flex-column justify-content-start">
+                    <a href="#" class="navbar-brand offset-md-1"> 
+                        <img src="{% static 'logo/logo2.jpg' %}" class="navbar-logo">   
+                    </a>
+                    <strong class="navbar-text" style="color: rgb(3, 31, 27);"> "That Extra Edge For Your Career" </strong>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h3 class="mb-4"><b>Quick Links</b></h3>
+                    <div class="d-flex flex-column">
+                        <a class="mb-2" href="{% url 'index' %}"><h5 style="color: black"><b>Home</b></h5></a>
+                        <a class="mb-2" href="{% url 'index' %}#services-section"><h5 style="color: black"><b>Services</b></h5></a>
+                        <a class="mb-2" href="{% url 'index' %}#about-us"><h5 style="color: black"><b>About Us</b></h5></a>
+                        <a class="mb-2" href="{% url 'index' %}#faq"><h5 style="color: black"><b>FAQs</b></h5></a>
+                        <a class="mb-2" href="{% static 'Privacy_Policy/PrivacyPolicy.pdf' %}"><h5 style="color: black"><b>Privacy Policy</b></h5></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-1">
+                    <h3 class="mb-4"><b>Get In Touch</b></h3>
+                    {% comment %} <div class="row"><h2 style="font-size:1.2rem">&nbsp&nbsp&nbsp<i class="fa-solid fa fa-envelope"></i>&nbsp <b>director@fluxwings.com</b></h2></div> {% endcomment %}
+                    <div class="row"><h2 style="font-size:1.2rem">&nbsp&nbsp&nbsp<i class="fa-solid fa fa-phone"></i>&nbsp <b>+91 9867046535</b></h2></div>
+                    <br><h3 class="mb-2"><b>Connect With Us</b></h3>
+                    <div class="d-flex">
+                        <h1><a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a></h1>
+                        <h1><a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="https://www.linkedin.com/in/mayurambastha/"><i class="fab fa-linkedin-in fw-normal"></i></a></h1>
+                        <h1><a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="https://www.instagram.com/mayurspeaks77/"><i class="fab fa-instagram fw-normal"></i></a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-white text-center border-top py-4 px-5" style="background-color: black;">
+            <p class="m-0">&copy; <a class="text-white border-bottom" href="#">Xtra Careers</a>. All Rights Reserved. </p>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    <script src="{% static 'script.js' %}"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> {% endcomment %}
+</body>
+</html>

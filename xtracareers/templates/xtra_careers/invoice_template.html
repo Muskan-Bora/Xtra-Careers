@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        /* General Styles */
+    
+        /* Header Section */
+        .header {
+            display: table;
+            width: 100%;
+            /* margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px; */
+        }
+    
+        .logo {
+            width: 150px;
+            height: 150px;
+        }
+    
+        .logo img {
+            width: 150px;
+            height: 150px;
+        }
+    
+        .company-info {
+            display: table-cell;
+            width: 200px;
+            text-align: left;
+            vertical-align: top;
+            padding-left: 20px;
+        }
+    
+        .company-info p {
+            margin: 5px 0;
+        }
+
+        .invoice-details-table {
+            width: 100%; /* Full-width table for alignment */
+            border-collapse: collapse; /* Ensure no gaps between cells */
+            margin-bottom: 20px; /* Add spacing below the table */
+        }
+
+        .invoice-details-table td {
+            padding: 8px; /* Add padding for spacing */
+            vertical-align: top; /* Align text to the top */
+        }
+
+        .invoice-details-table td p {
+            margin: 0; /* Remove default paragraph margins for clean alignment */
+        }
+
+        .supply-place-cell {
+            text-align: right; /* Align the Place of Supply text to the right */
+        }
+    
+        /* Invoice Details */
+    
+        .bill-to p {
+            font-size: 13px;
+        }
+
+        /* Table Styles */
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            text-align: center;
+            justify-content: center;
+        }
+    
+        .items-table th, 
+        .items-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        .items-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Styling the summary table */
+        .total-summary {
+            width: 100px; /* Use full width */
+            margin-top: 20px; /* Add spacing above */
+            border-collapse: collapse; /* Remove spacing between table cells */
+            font-size: 12px; /* Set font size for consistency */
+            line-height: 1.6; /* Improve readability */
+        }
+
+        /* Styling table rows */
+        .total-summary tr {
+            margin-bottom: 5px; /* Add spacing between rows */
+        }
+
+        /* Styling labels */
+        .total-summary .label {
+            text-align: center; /* Align labels to the left */
+            font-weight: bold; /* Highlight labels */
+            padding: 5px; /* Add spacing inside cells */
+        }
+
+        /* Styling values */
+        .total-summary .value {
+            text-align: center; /* Align values to the right */
+            padding: 5px; /* Add spacing inside cells */
+        }
+
+        /* Highlighting the total amount row */
+        .total-summary .highlight-row {
+            font-size: 14px; /* Make total amount more prominent */
+            font-weight: bold; /* Emphasize total amount */
+            border-top: 1px solid #000; /* Add a top border for separation */
+            padding-top: 5px; /* Add spacing above the content */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="header">
+            <div class="logo">
+                <img src="C:\Users\Dell\OneDrive\Desktop\xtra_careers\xtracareers_mysite\xtracareers\static\logo\fluxwingslogo.jpeg" alt="Company Logo">
+            </div>
+            <div class="company-info">
+                <p><strong>{{ company_name }}</strong></p>
+                <p>{{ company_address }}</p>
+                <p>Contact: {{ company_contact }}</p>
+                <p>{{ company_email }}</p>
+                <p>GSTIN: {{ gstin_number }}</p>
+                <p>{{ company_certificate }}</p>
+            </div>
+        </div>
+        
+        <table class="invoice-details-table">
+            <tr>
+                <td>
+                    <p><strong>Invoice Number:</strong> {{ invoice_number }}</p>
+                    <p><strong>Invoice Date:</strong> {{ invoice_date }}</p>
+                </td>
+                <td class="supply-place-cell">
+                    <p><strong>Place of Supply:</strong> {{ place_of_supply }}</p>
+                </td>
+            </tr>
+        </table>
+
+        <div class="bill-to">
+            <h3>Bill To:</h3>
+            <p><strong>Name: </strong>{{ customer_name }}</p>
+            <p><strong>Email: </strong>{{ customer_email }}</p>
+            <p><strong>Contact: </strong>{{ customer_contact }}</p>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Item & Description</th>
+                    <th>HSN/SAC</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Paid Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.hsn_sac }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.rate }}</td>
+                    <td>{{ item.paid_amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="total-summary">
+            <tr>
+                <td class="label"><strong>Subtotal:</strong></td>
+                <td class="value"> {{ subtotal }}</td>
+            </tr>
+            <tr>
+                <td class="label"><strong>Discount:</strong></td>
+                <td class="value"> {{ discount }}</td>
+            </tr>
+            <tr>
+                <td class="label"><strong>GST (18%):</strong></td>
+                <td class="value"> {{ gst_amount }}</td>
+            </tr>
+            <tr class="highlight-row">
+                <td class="label"><strong>Total Amount:</strong></td>
+                <td class="value"> {{ total_amount }}</td>
+            </tr>
+            <tr>
+                <td class="label"><strong>Paid Amount:</strong></td>
+                <td class="value"> {{ paid_amount }}</td>
+            </tr>
+        </table>
+
+        <div class="amount-words">
+            <p><strong>Total in Words :</strong> {{ amount_in_words }}</p>
+        </div>
+
+        <div class="signature">
+            <p>Authorized Signature</p>
+        </div>
+    </div>
+</body>
+</html>

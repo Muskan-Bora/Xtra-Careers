@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8d7da;
+            color: #721c24;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .success-cross {
+            height: 120px;
+            width: 200px;
+            border-radius: 10px;   
+        }
+
+        .failure-message {
+            background-color: #f44336;
+            color: white;
+            padding: 50px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            background-color: #030f1c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="failure-message">
+        <img src="{% static 'logo/failure_logo1.webp' %}" class="success-cross" >
+        <h1>Payment Failed!</h1>
+        <p>We are sorry, but your payment was not successful.</p>
+        <p>Possible reasons could be insufficient funds, payment gateway issues, or invalid card details.</p>
+        <p>Error Code: {{ error_code }}</p>
+        <p>Please try again or contact support if the issue persists.</p><br><br>
+        <a href="{% url 'payment_portal' %}" class="button">Retry Payment</a>
+    </div>
+
+</body>
+</html>

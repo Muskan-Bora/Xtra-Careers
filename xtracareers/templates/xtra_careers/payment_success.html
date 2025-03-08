@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d2feff;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .success_companylogo {
+            height: 150px;
+            width: 250px;   
+        }
+
+        .success-tick {
+            height: 100px;
+            width: 200px;   
+        }
+
+        /* strong .logo_message {
+            font-size: 20px;
+        } */
+
+        .success-message {
+            background-color: #000000f7;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="{% static 'logo/logo2.jpg' %}" class="success_companylogo" >
+        <p class="logo_message" style="color: rgb(11, 68, 61); font-size: 30px;">
+            <b>"That Extra Edge For Your Career" </b>
+        </p>
+    </div>
+    <div class="success-message">
+        <img src="{% static 'logo/success_logo2.webp' %}" class="success-tick" >
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your payment, {{ payment.name }}!</p>
+        
+        <p>We will process your order shortly. You will receive a confirmation email.</p><br>
+        {% comment %} <a href="{{ payment.invoice_url }}" target="_blank">Download Your Invoice</a> {% endcomment %}
+        <a href="{% url 'index' %}" class="button">Go to Home</a>
+    </div>
+
+</body>
+</html>
