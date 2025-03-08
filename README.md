@@ -1,5 +1,5 @@
 Xtra Careers - Empowering Your Job Search 🚀
-Live Website: 🌐 [www.xtracareers.com](www.xtracareers.com)
+Live Website: 🌐 [www.xtracareers.com](https://www.xtracareers.com/)
 
 🛠️ Tech Stack
 Xtra Careers is built using the following technologies:
